@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fazreen & Emma | The Wedding</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&family=Amiri&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        :root {
+            --bg-color: #0b0b0b;
+            --gold-color: #cfb53b;
+            --gold-gradient: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --text-color: #e0e0e0;
+            --font-main: 'Cinzel', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body, html { margin: 0; padding: 0; font-family: var(--font-body); background-color: var(--bg-color); color: var(--text-color); overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* --- PART 1: FRONT COVER --- */
+        .cover-section {
+            position: relative; width: 100%; height: 100vh;
+            background: url('emma.jpg') no-repeat center center;
+            background-size: cover;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 10;
+        }
+        .cover-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1; }
+        .cover-content { position: relative; z-index: 2; width: 100%; max-width: 500px; padding: 20px; margin-top: 150px; }
+        .cover-logo { width: 100px; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6)); }
+        .cover-intro { font-family: var(--font-main); font-size: 0.9rem; letter-spacing: 3px; color: #d4af37; text-transform: uppercase; margin-bottom: 10px; text-shadow: 2px 2px 4px #000; }
+        .cover-couple { font-family: var(--font-main); font-size: 2.8rem; font-weight: 700; text-transform: uppercase; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 10px 0; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.8)); line-height: 1.2; }
+        .cover-venue { font-family: var(--font-main); font-size: 1rem; color: #f0f0f0; text-transform: uppercase; letter-spacing: 1px; margin: 15px 0; text-shadow: 2px 2px 4px #000; }
+        .cover-divider { height: 2px; width: 80%; margin: 20px auto; background: var(--gold-gradient); box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+        .cover-date { font-family: var(--font-main); font-size: 1.1rem; color: #d4af37; letter-spacing: 2px; text-shadow: 2px 2px 4px #000; }
+        .btn-open { margin-top: 40px; background: transparent; border: 1px solid var(--gold-color); color: var(--gold-color); padding: 12px 30px; font-family: var(--font-main); font-weight: bold; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; animation: bounce 2s infinite; border-radius: 50px; backdrop-filter: blur(5px); }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+
+        /* --- PART 2: DETAILS SECTION --- */
+        .details-section {
+            position: relative; background-color: var(--bg-color);
+            background-image: repeating-linear-gradient(90deg, var(--bg-color), var(--bg-color) 39px, rgba(255, 255, 255, 0.03) 40px);
+            padding: 60px 20px 120px 20px; text-align: center; min-height: 100vh; z-index: 9;
+        }
+        .intro-bismillah { font-family: 'Amiri', serif; font-size: 1.8rem; color: var(--gold-color); margin-bottom: 20px; }
+        .intro-text { font-family: var(--font-main); font-size: 0.8rem; letter-spacing: 2px; color: #ccc; text-transform: uppercase; margin-bottom: 30px; line-height: 1.6; }
+        .parents-block { margin: 40px 0; }
+        .parents-names { font-family: var(--font-main); font-size: 0.95rem; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; line-height: 1.5; }
+        .family-label { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.8rem; color: var(--gold-color); margin-top: 5px; opacity: 0.8; }
+        .dan-separator { margin: 25px 0; font-size: 0.8rem; letter-spacing: 3px; color: #aaa; }
+        .guest-box { margin: 40px auto; background: rgba(255,255,255,0.05); border: 1px solid var(--gold-color); padding: 20px; max-width: 400px; backdrop-filter: blur(5px); }
+        .guest-name { font-family: var(--font-main); color: #fff; font-size: 1.4rem; text-transform: uppercase; }
+        .section-title { font-family: var(--font-main); color: var(--gold-color); font-size: 1.2rem; margin-bottom: 20px; margin-top: 50px; border-bottom: 1px solid #333; padding-bottom: 10px; display:inline-block; letter-spacing: 2px; }
+        
+        /* Itinerary */
+        .itinerary-box { text-align: left; padding: 0 10px; margin: 0 auto; max-width: 450px; }
+        .time-slot { display: flex; margin-bottom: 20px; border-left: 2px solid var(--gold-color); padding-left: 15px; }
+        .time { width: 85px; min-width: 85px; font-family: var(--font-main); color: var(--gold-color); font-weight: bold; font-size: 0.9rem; margin-right: 10px; }
+        .activity { color: #e0e0e0; font-size: 0.9rem; line-height: 1.5; }
+        .vip-name { font-family: var(--font-main); color: #fff; font-size: 0.85rem; margin-top: 5px; display: block; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        /* Countdown */
+        .countdown-container { display: flex; justify-content: center; gap: 10px; margin: 40px auto; }
+        .countdown-item { background-color: #111; border: 1px solid var(--gold-color); padding: 10px 5px; width: 70px; border-radius: 5px; }
+        .countdown-item span:first-child { display: block; font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--gold-color); font-weight: bold; }
+        .countdown-item span:last-child { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; text-transform: uppercase; color: #777; }
+
+        /* Gallery */
+        .gallery-container { margin: 20px auto; max-width: 500px; width: 100%; }
+        .swiper { width: 100%; aspect-ratio: 3 / 4; border: 2px solid var(--gold-color); padding: 5px; background: #111; }
+        .swiper-slide { background-position: center; background-size: cover; display: flex; align-items: center; justify-content: center; }
+        .swiper-slide img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+        
+        /* Guest Book */
+        .guestbook-container { max-width: 500px; margin: 0 auto; background: rgba(255,255,255,0.05); border: 1px solid #333; padding: 10px; max-height: 400px; overflow-y: auto; }
+        .wish-card { background: #151515; border-bottom: 1px solid #333; padding: 15px; text-align: left; margin-bottom: 5px; }
+        .wish-name { font-family: var(--font-main); color: var(--gold-color); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin-bottom: 5px; }
+        .wish-msg { font-family: 'Playfair Display', serif; font-style: italic; color: #ccc; font-size: 0.9rem; line-height: 1.4; }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 450px;
+            background: rgba(30, 30, 30, 0.95); border-radius: 50px; display: flex; justify-content: space-around;
+            padding: 12px 0; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border: 1px solid #555; backdrop-filter: blur(10px);
+        }
+        .nav-item { text-decoration: none; display: flex; flex-direction: column; align-items: center; color: #999; font-size: 0.6rem; font-family: var(--font-body); text-transform: uppercase; font-weight: 600; cursor: pointer; flex: 1; }
+        .nav-item i { font-size: 1.2rem; margin-bottom: 3px; color: #bbb; }
+        .nav-item:hover i { color: var(--gold-color); }
+
+        /* Modals */
+        .toggle-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; justify-content: center; align-items: flex-end; }
+        .modal-content { background: #111; width: 100%; max-width: 500px; border-top-left-radius: 20px; border-top-right-radius: 20px; padding: 30px; border-top: 3px solid var(--gold-color); color: white; text-align: center; animation: slideUp 0.3s; padding-bottom: 50px; }
+        @keyframes slideUp { from {transform: translateY(100%);} to {transform: translateY(0);} }
+        h1.modal-title { font-family: var(--font-main); color: var(--gold-color); font-size: 1.5rem; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        input, select, textarea { width: 100%; padding: 12px; margin-bottom: 15px; background: #222; border: 1px solid #444; color: #fff; font-family: var(--font-body); border-radius: 5px; outline: none; }
+        
+        .btn-action { background: var(--gold-color); color: #000; border: none; padding: 12px; border-radius: 50px; font-weight: bold; font-family: var(--font-main); width: 100%; margin-bottom: 10px; font-size: 1rem; cursor: pointer; }
+        .btn-close { background: transparent; border: 1px solid #555; color: #888; width: 100%; padding: 10px; border-radius: 50px; cursor: pointer; }
+        
+        .btn-calendar { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:10px; }
+        
+        #music-control { position: fixed; top: 20px; right: 20px; z-index: 900; background: rgba(0,0,0,0.6); border: 1px solid var(--gold-color); width: 40px; height: 40px; border-radius: 50%; color: var(--gold-color); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+
+        @media (max-width: 600px) {
+            .cover-content { margin-top: 20vh; }
+            .cover-couple { font-size: 2.2rem; }
+            .bottom-nav { width: 100%; bottom: 0; border-radius: 0; padding-bottom: 20px; background: #080808; border:none; border-top: 1px solid #333; }
+            .details-section { padding-bottom: 100px; }
+        }
+    </style>
+</head>
+<body>
+
+    <?php if($alert_script) echo "<script>$alert_script</script>"; ?>
+
+    <audio id="bgAudio" loop><source src="backgroundmusic.mp3" type="audio/mpeg"></audio>
+    <div id="music-control" onclick="toggleMusic()"><i class="fas fa-volume-mute"></i></div>
+
+    <section class="cover-section">
+        <div class="cover-overlay"></div>
+        <div class="cover-content">
+            <img src="wax-seal.png" alt="Logo" class="cover-logo">
+            <div class="cover-intro">THE WEDDING OF</div>
+            <div class="cover-couple">FAZREEN & EMMA</div>
+            <div class="cover-venue">DEWAN JUBLI PERAK SULTAN HAJI AHMAD SHAH</div>
+            <div class="cover-divider"></div>
+            <div class="cover-date">14 FEBRUARI 2026  |  26 SYAABAN 1447H</div>
+            <button class="btn-open" onclick="scrollToDetails()">OPEN INVITATION <i class="fa-solid fa-chevron-down"></i></button>
+        </div>
+    </section>
+
+    <section class="details-section" id="details">
+        
+        <div class="intro-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+        <div class="intro-text">Dengan Penuh Kesyukuran ke hadrat Allah S.W.T</div>
+
+        <div class="parents-block">
+            <div class="parents-names">DATO' HAJI MD ALI BIN YUSOH <br>&<br> DATIN HAJAH ROSMAWATI BINTI ABDUL KAHAR</div>
+            <div class="family-label">Keluarga Pengantin Lelaki</div>
+        </div>
+        <div class="dan-separator">— DAN —</div>
+        <div class="parents-block">
+            <div class="parents-names">PUAN JAMILAH BINTI SALEH <br>&<br> ALLAHYARHAM SHAIKH ABDUL MUNAIM AL-MURISI</div>
+            <div class="family-label">Keluarga Pengantin Perempuan</div>
+        </div>
+
+        <div class="intro-text" style="margin-top:40px;">
+            Dengan segala hormatnya mempersilakan<br>
+            <small style="color:#aaa;">YM / Ybg Tan Sri / Datin Sri / Dato' Sri / Datin Sri / Dato' / Datin / Tuan / Puan / Encik / Cik</small><br>
+            ke majlis perkahwinan anak kami
+        </div>
+
+        <div class="cover-couple" style="font-size:2rem; margin:30px 0;">Muhammad Fazreen <br><span style="font-size:1.5rem; color:#fff;">&</span><br>Siti Fatimah</div>
+
+        <div class="guest-box">
+            <small style="color:#aaa; letter-spacing:2px; text-transform:uppercase; font-size:0.7rem;">Tetamu Jemputan Khas</small>
+            <div class="guest-name"><?php echo htmlspecialchars($guest['name']); ?></div>
+            <div style="font-size:0.7rem; color:var(--gold-color); margin-top:5px; font-style:italic;">(Sila tunjukkan QR Tiket di pintu masuk)</div>
+        </div>
+         <div class="section-title"> Hari Itu Milik Kita</div>
+        <div id="countdown" class="countdown-container">
+            <div class="countdown-item"><span id="days">00</span><span>Hari</span></div>
+            <div class="countdown-item"><span id="hours">00</span><span>Jam</span></div>
+            <div class="countdown-item"><span id="minutes">00</span><span>Minit</span></div>
+            <div class="countdown-item"><span id="seconds">00</span><span>Saat</span></div>
+        </div>
+
+        <div class="section-title">ATURCARA MAJLIS</div>
+        <div class="itinerary-box">
+            <div class="time-slot"><div class="time">7:00 PM</div><div class="activity">Ketibaan Para Tetamu Jemputan Bermula</div></div>
+            <div class="time-slot"><div class="time">8:15 PM</div><div class="activity">Ketibaan<br><span class="vip-name">YTM Dato' Mendika Menteri Akhirulzaman<br>Dato' Haji Maarof bin Haji Mat Rashad</span></div></div>
+            <div class="time-slot"><div class="time">8:20 PM</div><div class="activity">Perarakan Masuk Pasangan Pengantin</div></div>
+            <div class="time-slot"><div class="time">8:30 PM</div><div class="activity">Kata Kata Aluan Pengacara Majlis<br>Bacaan Doa<br>Salam Restu<br>Santapan Bermula<br>Montage Perkahwinan<br>Upacara Pemotongan Kek<br>Upacara Bergambar</div></div>
+            <div class="time-slot"><div class="time">11:00 PM</div><div class="activity">Tetamu Meninggalkan Majlis</div></div>
+        </div>
+
+        <div class="section-title">MEMORIES</div>
+        <div class="gallery-container">
+            <div class="swiper gallery-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="emma1.jpg" alt="Photo 1"></div>
+                    <div class="swiper-slide"><img src="emma2.jpg" alt="Photo 2"></div>
+                    <div class="swiper-slide"><img src="emma3.jpg" alt="Photo 3"></div>
+                    <div class="swiper-slide"><img src="emma4.jpg" alt="Photo 4"></div>
+					<div class="swiper-slide"><img src="emma5.jpg" alt="Photo 5"></div>
+					<div class="swiper-slide"><img src="emma6.jpg" alt="Photo 6"></div>
+					<div class="swiper-slide"><img src="emma7.jpg" alt="Photo 7"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
+        <div class="section-title">GUEST BOOK</div>
+        <div class="guestbook-container">
+            <?php if ($wishes_query->num_rows > 0): ?>
+                <?php while($row = $wishes_query->fetch_assoc()): ?>
+                    <div class="wish-card">
+                        <div class="wish-name"><?php echo htmlspecialchars($row['name']); ?></div>
+                        <div class="wish-msg">"<?php echo nl2br(htmlspecialchars($row['message'])); ?>"</div>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p style="color:#777; font-size:0.8rem; padding:20px;">Belum ada ucapan. Jadilah yang pertama!</p>
+            <?php endif; ?>
+        </div>
+
+        <div class="intro-text" style="margin-top:50px;">#FazreenforEmma</div>
+
+    </section>
+
+    <div class="bottom-nav">
+        <div class="nav-item" onclick="openModal('rsvp-menu')"><i class="fa-regular fa-envelope"></i><span>RSVP</span></div>
+        <div class="nav-item" onclick="openModal('money-menu')"><i class="fa-solid fa-camera"></i><span>Dresscode</span></div>
+        <div class="nav-item" onclick="openModal('calendar-menu')"><i class="fa-regular fa-calendar"></i><span>Kalendar</span></div>
+        <div class="nav-item" onclick="openModal('location-menu')"><i class="fa-solid fa-location-dot"></i><span>Lokasi</span></div>
+        <div class="nav-item" onclick="openModal('contact-menu')"><i class="fa-solid fa-phone"></i><span>Hubungi</span></div>
+    </div>
+
+    <div id="rsvp-menu" class="toggle-menu">
+        <div class="modal-content">
+            <h1 class="modal-title">RSVP</h1>
+            <p style="margin-bottom:20px; color:#ccc;">Adakah anda akan hadir?</p>
+            <button class="btn-action" onclick="selectRSVP('attending')"><i class='bx bx-check-circle'></i> Hadir</button>
+            <button class="btn-action" style="background:#333; color:white;" onclick="selectRSVP('not_attending')"><i class='bx bx-x-circle'></i> Tidak Hadir</button>
+            <button class="btn-close" onclick="closeModal('rsvp-menu')">Tutup</button>
+        </div>
+    </div>
+
+    <div id="ucapan-menu" class="toggle-menu">
+        <div class="modal-content">
+            <h1 class="modal-title">Maklumat Kehadiran</h1>
+            <form method="POST">
+                <input type="hidden" name="rsvp_status" id="status_input">
+                <input type="text" name="name" value="<?php echo htmlspecialchars($guest['name']); ?>" readonly style="background:#222; color:#777;">
+                <div id="pax-container">
+                    <select name="pax"><option value="1">1 Orang</option><option value="2">2 Orang</option><option value="3">3 Orang</option><option value="4">4 Orang</option></select>
+                </div>
+                <input type="text" name="no_tel" value="<?php echo htmlspecialchars($guest['phone']); ?>" placeholder="Nombor Telefon">
+                <textarea name="message" rows="3" placeholder="Ucapan untuk pengantin..."><?php echo htmlspecialchars($guest['message'] ?? ''); ?></textarea>
+                <button type="submit" name="save_rsvp" class="btn-action">Hantar RSVP</button>
+                <button type="button" class="btn-close" onclick="closeModal('ucapan-menu')">Batal</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="money-menu" class="toggle-menu">
+        <div class="modal-content">
+            <h1 class="modal-title">DRESS CODE</h1>
+            <p style="color:var(--gold-color); font-weight:bold; margin-bottom:20px;">KINGSMAN / BLACK TIE</p>
+            <div style="text-align:left; background:#222; padding:15px; border-radius:10px; border:1px solid #444; margin-bottom:20px;">
+                <p style="margin-bottom:10px;"><i class="fa-solid fa-user-tie"></i> <strong>Lelaki:</strong> <br>Black Tuxedo / Suit / Baju Melayu Hitam</p>
+                <p><i class="fa-solid fa-person-dress"></i> <strong>Perempuan:</strong> <br>Evening Gown / Baju Kurung (Black/Gold)</p>
+            </div>
+            <button class="btn-close" onclick="closeModal('money-menu')">Tutup</button>
+        </div>
+    </div>
+
+    <div id="calendar-menu" class="toggle-menu">
+        <div class="modal-content">
+            <h1 class="modal-title">KALENDAR</h1>
+            <p style="font-size:1.2rem; color:white; margin-bottom:20px;">14 FEBRUARI 2026</p>
+            <button class="btn-action btn-calendar" onclick="window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+Fazreen+Emma&dates=20260214T190000/20260214T230000&details=Majlis+Resepsi&location=Dewan+Jubli+Perak+Kuantan')">
+                <i class="fa-brands fa-google"></i> Google Calendar
+            </button>
+            <button class="btn-action btn-calendar" onclick="addToAppleCalendar()">
+                <i class="fa-brands fa-apple"></i> Apple Calendar
+            </button>
+            <button class="btn-close" onclick="closeModal('calendar-menu')">Tutup</button>
+        </div>
+    </div>
+
+    <div id="location-menu" class="toggle-menu">
+        <div class="modal-content">
+            <h1 class="modal-title">LOKASI</h1>
+            <p style="color:#ccc; margin-bottom:20px;">Dewan Jubli Perak,<br>Kuantan, Pahang</p>
+            <button class="btn-action" onclick="window.open('https://waze.com/ul?q=Dewan+Jubli+Perak+Sultan+Haji+Ahmad+Shah')"><i class="fa-brands fa-waze"></i> Waze</button>
+            <button class="btn-action" style="background:#333; color:white;" onclick="window.open('https://www.google.com/maps/place//data=!4m2!3m1!1s0x31c8ba9bba555555:0x15c3b81cc53a05e1?entry=s&sa=X&ved=2ahUKEwiP0fC_g5KRAxVExzgGHUYYLbQQ4kB6BAgUEAA&hl=en')"><i class="fa-solid fa-map"></i> Maps</button>
+            <button class="btn-close" onclick="closeModal('location-menu')">Tutup</button>
+        </div>
+    </div>
+
+    <div id="contact-menu" class="toggle-menu">
+        <div class="modal-content">
+            <h1 class="modal-title">HUBUNGI</h1>
+            
+            <div style="background:#222; padding:15px; border-radius:10px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; border:1px solid #333;">
+                <div style="text-align:left;">
+                    <strong style="color:var(--gold-color);">Dato Md Ali</strong><br>
+                    <small style="color:#888">Bapa Pengantin</small>
+                </div>
+                <div style="display:flex; gap:15px;">
+                    <a href="tel:60169394333" style="color:#fff; font-size:1.5rem;"><i class="fa-solid fa-phone"></i></a>
+                    <a href="https://wa.me/60169394333" style="color:#25D366; font-size:1.5rem;"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div style="background:#222; padding:15px; border-radius:10px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; border:1px solid #333;">
+                <div style="text-align:left;">
+                    <strong style="color:var(--gold-color);">Datin Rosmawati</strong><br>
+                    <small style="color:#888">Ibu Pengantin</small>
+                </div>
+                <div style="display:flex; gap:15px;">
+                    <a href="tel:60106528080" style="color:#fff; font-size:1.5rem;"><i class="fa-solid fa-phone"></i></a>
+                    <a href="https://wa.me/60106528080" style="color:#25D366; font-size:1.5rem;"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div style="background:#222; padding:15px; border-radius:10px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; border:1px solid #333;">
+                <div style="text-align:left;">
+                    <strong style="color:var(--gold-color);">Fazreen</strong><br>
+                    <small style="color:#888">Pengantin Lelaki</small>
+                </div>
+                <div style="display:flex; gap:15px;">
+                    <a href="tel:60127077004" style="color:#fff; font-size:1.5rem;"><i class="fa-solid fa-phone"></i></a>
+                    <a href="https://wa.me/60127077004" style="color:#25D366; font-size:1.5rem;"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <button class="btn-close" onclick="closeModal('contact-menu')">Tutup</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        function scrollToDetails() {
+            document.getElementById('details').scrollIntoView({ behavior: 'smooth' });
+            var audio = document.getElementById("bgAudio");
+            if(audio.paused) { toggleMusic(); }
+        }
+
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        
+        function selectRSVP(status) {
+            document.getElementById('status_input').value = status;
+            document.getElementById('pax-container').style.display = (status === 'not_attending') ? 'none' : 'block';
+            closeModal('rsvp-menu');
+            openModal('ucapan-menu');
+        }
+
+        var audio = document.getElementById("bgAudio");
+        var isPlaying = false;
+        function toggleMusic() {
+            if (isPlaying) { audio.pause(); document.getElementById('music-control').innerHTML = '<i class="fas fa-volume-mute"></i>'; } 
+            else { audio.play(); document.getElementById('music-control').innerHTML = '<i class="fas fa-music"></i>'; }
+            isPlaying = !isPlaying;
+        }
+
+        // Apple Calendar (.ics) Generator
+        function addToAppleCalendar() {
+            const event = [
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'PRODID:-//Kingsman Wedding//EN',
+                'BEGIN:VEVENT',
+                'UID:' + new Date().getTime() + '@wedding.com',
+                'DTSTAMP:' + new Date().toISOString().replace(/[-:.]/g, ''),
+                'DTSTART:20260214T190000', // 7:00 PM
+                'DTEND:20260214T230000',   // 11:00 PM
+                'SUMMARY:Wedding: Fazreen & Emma',
+                'DESCRIPTION:Majlis Resepsi di Dewan Jubli Perak.',
+                'LOCATION:Dewan Jubli Perak Sultan Haji Ahmad Shah, Kuantan, Pahang',
+                'END:VEVENT',
+                'END:VCALENDAR'
+            ].join('\n');
+
+            const blob = new Blob([event], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'Wedding_Fazreen_Emma.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        const targetDate = new Date("2026-02-14T00:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            if(diff > 0) {
+                document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            }
+        }, 1000);
+
+        // Initialize Swiper
+        new Swiper('.gallery-swiper', {
+            loop: true,
+            autoplay: { delay: 2500, disableOnInteraction: false },
+            pagination: { el: '.swiper-pagination', clickable: true },
+        });
+    </script>
+
+</body>
+</html>
