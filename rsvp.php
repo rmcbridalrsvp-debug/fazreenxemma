@@ -1,40 +1,3 @@
-<?php
-include 'db_connect.php';
-
-// --- 1. VALIDATION & DATA FETCHING ---
-if (!isset($_GET['token'])) { die("<div style='color:white;text-align:center;padding:50px;background:#000;'>Error: Token Missing</div>"); }
-$token = $_GET['token'];
-
-// Fetch Guest
-$stmt = $conn->prepare("SELECT * FROM guests WHERE unique_token = ?");
-$stmt->bind_param("s", $token);
-$stmt->execute();
-$guest = $stmt->get_result()->fetch_assoc();
-
-if (!$guest) { die("<div style='color:white;text-align:center;padding:50px;background:#000;'>Error: Invalid Invitation</div>"); }
-
-// --- 2. HANDLE RSVP FORM SUBMISSION ---
-$alert_script = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_rsvp'])) {
-    $status = $_POST['rsvp_status']; 
-    $pax = ($status == 'not_attending') ? 0 : $_POST['pax'];
-    $msg = $_POST['message'];
-    $phone = $_POST['no_tel'];
-
-    $update = $conn->prepare("UPDATE guests SET rsvp_status=?, pax_count=?, message=?, phone=? WHERE unique_token=?");
-    $update->bind_param("sisss", $status, $pax, $msg, $phone, $token);
-    
-    if ($update->execute()) {
-        $alert_script = "alert('Terima kasih! Kehadiran anda telah direkodkan.'); window.location.href='rsvp.php?token=$token';";
-    } else {
-        $alert_script = "alert('Ralat sistem. Sila cuba lagi.');";
-    }
-}
-
-// --- 3. FETCH WISHES (GUEST BOOK) ---
-$wishes_query = $conn->query("SELECT name, message FROM guests WHERE message IS NOT NULL AND message != '' ORDER BY created_at DESC");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -438,4 +401,5 @@ $wishes_query = $conn->query("SELECT name, message FROM guests WHERE message IS 
     </script>
 
 </body>
+
 </html>
